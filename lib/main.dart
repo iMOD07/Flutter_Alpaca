@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'ui/alpaca_account_view.dart';
+import 'package:flutter_alpaca/ui/login_screen.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 Future<void> main() async {
@@ -53,20 +53,7 @@ class MyApp extends StatelessWidget {
       title: 'Alpaca Account',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.blue),
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Alpaca Account'),
-          centerTitle: true,
-          backgroundColor: Color.fromARGB(255, 201, 201, 201),
-        ),
-        body: SafeArea(
-          child: AlpacaAccountView(
-            keyId: keyId,
-            secret: secret,
-            baseUrl: baseUrl,
-          ),
-        ),
-      ),
+      home: LoginScreen(keyId: keyId, secret: secret, baseUrl: baseUrl),
     );
   }
 }
