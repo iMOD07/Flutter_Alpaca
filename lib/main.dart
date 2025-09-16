@@ -5,14 +5,14 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Try loading .env (locally during development)
+  // Load .env (locally during development)
   try {
     await dotenv.load(fileName: ".env");
   } catch (_) {
-    // If there is no .env file or the upload fails, we ignore it — we have a fallback for dart-define
+    // ignore if .env not found
   }
 
-  // First take from dotenv (runtime), if it doesn't exist take from compile-time (fromEnvironment).
+  // Load API keys
   const String defaultKeyId = String.fromEnvironment(
     'ALPACA_KEY_ID',
     defaultValue: 'REPLACE_ME',
@@ -30,8 +30,16 @@ Future<void> main() async {
   final String kAlpacaSecret = dotenv.env['ALPACA_SECRET'] ?? defaultSecret;
   final String kAlpacaBaseUrl = dotenv.env['ALPACA_BASE_URL'] ?? defaultBaseUrl;
 
+  // Load App Password
+  final String appPassword = dotenv.env['APP_PASSWORD'] ?? "1234";
+
   runApp(
-    MyApp(keyId: kAlpacaKeyId, secret: kAlpacaSecret, baseUrl: kAlpacaBaseUrl),
+    MyApp(
+      keyId: kAlpacaKeyId,
+      secret: kAlpacaSecret,
+      baseUrl: kAlpacaBaseUrl,
+      appPassword: appPassword,
+    ),
   );
 }
 
@@ -39,12 +47,14 @@ class MyApp extends StatelessWidget {
   final String keyId;
   final String secret;
   final String baseUrl;
+  final String appPassword;
 
   const MyApp({
     super.key,
     required this.keyId,
     required this.secret,
     required this.baseUrl,
+    required this.appPassword,
   });
 
   @override
@@ -53,7 +63,12 @@ class MyApp extends StatelessWidget {
       title: 'Alpaca Account',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.blue),
-      home: LoginScreen(keyId: keyId, secret: secret, baseUrl: baseUrl),
+      home: LoginScreen(
+        keyId: keyId,
+        secret: secret,
+        baseUrl: baseUrl,
+        appPassword: appPassword,
+      ),
     );
   }
 }

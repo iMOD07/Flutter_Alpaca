@@ -5,12 +5,14 @@ class LoginScreen extends StatefulWidget {
   final String keyId;
   final String secret;
   final String baseUrl;
+  final String appPassword;
 
   const LoginScreen({
     super.key,
     required this.keyId,
     required this.secret,
     required this.baseUrl,
+    required this.appPassword,
   });
 
   @override
@@ -22,9 +24,7 @@ class _LoginScreenState extends State<LoginScreen> {
   String? _errorMessage;
 
   void _login() {
-    const correctPassword = "1234"; // غيرها باللي تبغاه
-
-    if (_passwordController.text == correctPassword) {
+    if (_passwordController.text == widget.appPassword) {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
@@ -37,7 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
       );
     } else {
       setState(() {
-        _errorMessage = "الباسورد غير صحيح!";
+        _errorMessage = "The password is incorrect, Please try again";
       });
     }
   }
@@ -55,12 +55,12 @@ class _LoginScreenState extends State<LoginScreen> {
               controller: _passwordController,
               obscureText: true,
               decoration: const InputDecoration(
-                labelText: "ادخل الباسورد",
+                labelText: "Enter App Password",
                 border: OutlineInputBorder(),
               ),
             ),
             const SizedBox(height: 20),
-            ElevatedButton(onPressed: _login, child: const Text("دخول")),
+            ElevatedButton(onPressed: _login, child: const Text("Login")),
             if (_errorMessage != null) ...[
               const SizedBox(height: 10),
               Text(_errorMessage!, style: const TextStyle(color: Colors.red)),

@@ -9,6 +9,7 @@ void main() {
         keyId: 'TEST_KEY',
         secret: 'TEST_SECRET',
         baseUrl: 'https://paper-api.alpaca.markets/v2',
+        appPassword: '1234',
       ),
     );
 
