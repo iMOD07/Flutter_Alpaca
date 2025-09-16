@@ -25,4 +25,4 @@ A simple Flutter app that displays your account details from [Alpaca Markets](ht
 Duplicate `.env.example` to `.env`:
 
 ```bash
-cp .env.example .env
+cp .env.example .env# Flutter_Alpaca
