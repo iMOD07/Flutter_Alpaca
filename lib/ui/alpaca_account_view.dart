@@ -63,7 +63,7 @@ class _AlpacaAccountViewState extends State<AlpacaAccountView> {
     return '${t.substring(0, 3)}***${t.substring(t.length - 3)} (${t.length})';
   }
 
-  // Pull-to-refresh (المهم: لا await داخل setState)
+  // Pull-to-refresh (important: do not await inside setState)
   Future<void> _handlePullToRefresh() async {
     print('🔄 Refresh started: calling getAccount()');
     final f = _api.getAccount();
@@ -95,6 +95,8 @@ class _AlpacaAccountViewState extends State<AlpacaAccountView> {
           final isMobile = w < 600;
           final isTablet = w >= 600 && w < 1024;
           final cols = isMobile ? 1 : (isTablet ? 2 : 3);
+          // ignore: unused_local_variable
+          final isMediaQueryMobile = MediaQuery.of(context).size.width < 600;
 
           return Scaffold(
             appBar: AppBar(
@@ -361,28 +363,31 @@ class _AlpacaAccountViewState extends State<AlpacaAccountView> {
                         ),
                       ),
                       // Additional Refresh button suitable for web/desktop
+                      SizedBox(height: 5),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          ElevatedButton.icon(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: kPrimary,
-                            ),
-                            onPressed: () => _refreshKey.currentState?.show(),
-                            icon: const Icon(
-                              Icons.refresh,
-                              color: Colors.white,
-                            ),
-                            label: const Text(
-                              'Refresh',
-                              style: TextStyle(
-                                fontSize: 16,
+                          if (!isMobile)
+                            ElevatedButton.icon(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: kPrimary,
+                              ),
+                              onPressed: () => _refreshKey.currentState?.show(),
+                              icon: const Icon(
+                                Icons.refresh,
                                 color: Colors.white,
                               ),
+                              label: const Text(
+                                'Refresh',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                ),
+                              ),
                             ),
-                          ),
                         ],
                       ),
+                      SizedBox(height: 5),
                     ],
                   ),
                 ),
