@@ -68,8 +68,6 @@ class MyApp extends StatelessWidget {
         baseUrl: baseUrl,
         appPassword: appPassword,
       ),
-
-      // home: AlpacaAccountView(keyId: keyId, secret: secret, baseUrl: baseUrl),
     );
   }
 }
