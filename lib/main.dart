@@ -60,7 +60,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Alpaca Account',
+      title: 'Alpaca Account MOD98',
       debugShowCheckedModeBanner: false,
       home: LoginScreen(
         keyId: keyId,
