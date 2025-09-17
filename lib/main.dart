@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_alpaca/ui/alpaca_account_view.dart';
 import 'package:flutter_alpaca/ui/login_screen.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
@@ -62,13 +63,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Alpaca Account',
       debugShowCheckedModeBanner: false,
-      //theme: ThemeData(useMaterial3: true),
       home: LoginScreen(
         keyId: keyId,
         secret: secret,
         baseUrl: baseUrl,
         appPassword: appPassword,
       ),
+
+      // home: AlpacaAccountView(keyId: keyId, secret: secret, baseUrl: baseUrl),
     );
   }
 }
