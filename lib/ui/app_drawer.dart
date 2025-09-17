@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_alpaca/ui/clock_market_status.dart';
+import '../models/alpaca_creds.dart';
 import 'alpaca_account_view.dart';
-// ignore: duplicate_import
 import 'clock_market_status.dart';
-import 'package:flutter_alpaca/models/AlpacaCreds.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({
@@ -36,8 +34,9 @@ class AppDrawer extends StatelessWidget {
             leading: const Icon(Icons.home),
             title: const Text('Alpaca Account'),
             onTap: () {
-              Navigator.pop(context); // أغلق الدروار
-              if (isOnAccount) return; // أنت فيها بالفعل
+              Navigator.pop(context);
+              if (isOnAccount) return; // You are here
+
               Navigator.pushReplacement(
                 context,
                 PageRouteBuilder(
@@ -55,10 +54,11 @@ class AppDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: const Icon(Icons.access_time),
-            title: const Text('Market Clock'),
+            title: const Text("Market Clock"),
             onTap: () {
               Navigator.pop(context);
               if (isOnClock) return;
+
               Navigator.pushReplacement(
                 context,
                 PageRouteBuilder(

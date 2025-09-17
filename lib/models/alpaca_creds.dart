@@ -2,6 +2,7 @@ class AlpacaCreds {
   final String keyId;
   final String secret;
   final String baseUrl;
+
   const AlpacaCreds({
     required this.keyId,
     required this.secret,

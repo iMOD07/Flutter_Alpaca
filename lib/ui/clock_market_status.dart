@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_alpaca/models/AlpacaCreds.dart';
+import '../models/alpaca_creds.dart';
 import 'app_drawer.dart';
 
 class ClockMarketStatus extends StatelessWidget {
@@ -12,7 +12,7 @@ class ClockMarketStatus extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Clock and Market Status"),
+        title: const Text('Clock and Market Status'),
         centerTitle: true,
         backgroundColor: kPrimary,
       ),

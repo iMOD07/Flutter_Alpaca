@@ -3,7 +3,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
-import 'package:flutter_alpaca/models/AlpacaCreds.dart';
+import 'package:flutter_alpaca/models/alpaca_creds.dart';
 import 'package:flutter_alpaca/ui/app_drawer.dart';
 import '../api/alpaca_api.dart';
 
