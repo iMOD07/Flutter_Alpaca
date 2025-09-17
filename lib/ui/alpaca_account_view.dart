@@ -369,8 +369,17 @@ class _AlpacaAccountViewState extends State<AlpacaAccountView> {
                               backgroundColor: kPrimary,
                             ),
                             onPressed: () => _refreshKey.currentState?.show(),
-                            icon: const Icon(Icons.refresh),
-                            label: const Text('Refresh'),
+                            icon: const Icon(
+                              Icons.refresh,
+                              color: Colors.white,
+                            ),
+                            label: const Text(
+                              'Refresh',
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.white,
+                              ),
+                            ),
                           ),
                         ],
                       ),

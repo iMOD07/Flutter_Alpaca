@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_alpaca/ui/alpaca_account_view.dart';
 import 'package:flutter_alpaca/ui/login_screen.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
