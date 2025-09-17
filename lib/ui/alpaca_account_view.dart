@@ -3,6 +3,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:flutter_alpaca/models/AlpacaCreds.dart';
+import 'package:flutter_alpaca/ui/app_drawer.dart';
 import '../api/alpaca_api.dart';
 
 // ================= Setting up scroll behavior for the web =================
@@ -103,6 +105,14 @@ class _AlpacaAccountViewState extends State<AlpacaAccountView> {
               title: const Text('Alpaca Account'),
               centerTitle: true,
               backgroundColor: kPrimary,
+            ),
+            drawer: AppDrawer(
+              creds: AlpacaCreds(
+                keyId: widget.keyId,
+                secret: widget.secret,
+                baseUrl: widget.baseUrl,
+              ),
+              isOnAccount: true,
             ),
             body: Center(
               child: ConstrainedBox(
@@ -363,7 +373,7 @@ class _AlpacaAccountViewState extends State<AlpacaAccountView> {
                         ),
                       ),
                       // Additional Refresh button suitable for web/desktop
-                      SizedBox(height: 5),
+                      SizedBox(height: 15),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -387,7 +397,7 @@ class _AlpacaAccountViewState extends State<AlpacaAccountView> {
                             ),
                         ],
                       ),
-                      SizedBox(height: 5),
+                      SizedBox(height: 1),
                     ],
                   ),
                 ),
