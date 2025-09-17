@@ -58,7 +58,7 @@ class _LoginScreenState extends State<LoginScreen> {
           Expanded(
             child: Center(
               child: Container(
-                height: 350,
+                height: 400,
                 width: 500,
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
@@ -74,28 +74,26 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Image.network(
                       "https://res.cloudinary.com/drzpjbr87/image/upload/v1758097853/logo-1_elfffc.png",
-                      height: 125,
+                      height: 120,
                     ),
                     Text(
                       "Welcome back",
                       style: TextStyle(
-                        fontSize: 15,
+                        fontSize: 20,
                         fontWeight: FontWeight.bold,
                         color: const Color.fromARGB(223, 0, 0, 0),
                       ),
                     ),
-                    const SizedBox(height: 10),
                     Text(
                       "Enter your password to access and track your account.\n"
                       "We never store your password. Your access is verified securely.",
                       textAlign: TextAlign.center,
                       style: TextStyle(fontSize: 15, color: Colors.black54),
                     ),
-                    const SizedBox(height: 20),
                     TextField(
                       controller: _passwordController,
                       obscureText: true,
@@ -104,16 +102,33 @@ class _LoginScreenState extends State<LoginScreen> {
                         border: OutlineInputBorder(),
                       ),
                     ),
-                    const SizedBox(height: 20),
                     ElevatedButton(
                       onPressed: _login,
-                      child: const Text("Login"),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFF5A72A0),
+                        foregroundColor: Colors.white,
+                        minimumSize: const Size(150, 40),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        elevation: 3,
+                      ),
+                      child: const Text(
+                        "Login",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
                     ),
                     if (_errorMessage != null) ...[
-                      const SizedBox(height: 10),
                       Text(
                         _errorMessage!,
-                        style: const TextStyle(color: Colors.red),
+                        style: const TextStyle(
+                          color: Colors.red,
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ],
                   ],
