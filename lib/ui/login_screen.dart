@@ -25,13 +25,18 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void _login() {
     if (_passwordController.text == widget.appPassword) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => AlpacaAccountView(
+      Navigator.of(context).pushReplacement(
+        PageRouteBuilder(
+          pageBuilder: (_, __, ___) => AlpacaAccountView(
             keyId: widget.keyId,
             secret: widget.secret,
             baseUrl: widget.baseUrl,
+          ),
+          transitionsBuilder: (_, animation, __, child) {
+            return FadeTransition(opacity: animation, child: child);
+          },
+          transitionDuration: const Duration(
+            milliseconds: 400, // time for the transition
           ),
         ),
       );
@@ -59,7 +64,7 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Center(
               child: Container(
                 height: 400,
-                width: 500,
+                width: 370,
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   color: Color(0xFFF7F7F7),
