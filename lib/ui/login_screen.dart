@@ -45,28 +45,90 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Dashboard"), centerTitle: true),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TextField(
-              controller: _passwordController,
-              obscureText: true,
-              decoration: const InputDecoration(
-                labelText: "Enter App Password",
-                border: OutlineInputBorder(),
+      backgroundColor: Color(0xFFFFFFF),
+      appBar: AppBar(
+        title: const Text("Dashboard"),
+        centerTitle: true,
+        backgroundColor: Color(0xFFF1F1F1),
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Expanded(
+            child: Center(
+              child: Container(
+                height: 350,
+                width: 500,
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Color(0xFFF7F7F7),
+                  borderRadius: BorderRadius.circular(8),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black12,
+                      blurRadius: 8,
+                      offset: Offset(0, 2),
+                    ),
+                  ],
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.network(
+                      "https://res.cloudinary.com/drzpjbr87/image/upload/v1758097853/logo-1_elfffc.png",
+                      height: 125,
+                    ),
+                    Text(
+                      "Welcome back",
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        color: const Color.fromARGB(223, 0, 0, 0),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      "Enter your password to access and track your account.\n"
+                      "We never store your password. Your access is verified securely.",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 15, color: Colors.black54),
+                    ),
+                    const SizedBox(height: 20),
+                    TextField(
+                      controller: _passwordController,
+                      obscureText: true,
+                      decoration: const InputDecoration(
+                        labelText: "Password",
+                        border: OutlineInputBorder(),
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    ElevatedButton(
+                      onPressed: _login,
+                      child: const Text("Login"),
+                    ),
+                    if (_errorMessage != null) ...[
+                      const SizedBox(height: 10),
+                      Text(
+                        _errorMessage!,
+                        style: const TextStyle(color: Colors.red),
+                      ),
+                    ],
+                  ],
+                ),
               ),
             ),
-            const SizedBox(height: 20),
-            ElevatedButton(onPressed: _login, child: const Text("Login")),
-            if (_errorMessage != null) ...[
-              const SizedBox(height: 10),
-              Text(_errorMessage!, style: const TextStyle(color: Colors.red)),
-            ],
-          ],
-        ),
+          ),
+          const Padding(
+            padding: EdgeInsets.only(bottom: 10),
+            child: Text(
+              "© 2025 Mohammed SH. All rights reserved.",
+              style: TextStyle(fontSize: 12, color: Colors.black54),
+            ),
+          ),
+        ],
       ),
     );
   }

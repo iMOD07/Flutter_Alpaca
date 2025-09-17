@@ -62,7 +62,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Alpaca Account',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.blue),
+      //theme: ThemeData(useMaterial3: true),
       home: LoginScreen(
         keyId: keyId,
         secret: secret,
