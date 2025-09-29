@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_alpaca/ui/alpaca_account_view.dart';
 
 class LoginScreen extends StatefulWidget {
-  final String keyId;
-  final String secret;
-  final String baseUrl;
-  final String appPassword;
+  final String? keyId;
+  final String? secret;
+  final String? baseUrl;
+  final String? appPassword;
 
   const LoginScreen({
     super.key,
-    required this.keyId,
-    required this.secret,
-    required this.baseUrl,
-    required this.appPassword,
+    this.keyId,
+    this.secret,
+    this.baseUrl,
+    this.appPassword,
   });
 
   @override
@@ -24,20 +24,20 @@ class _LoginScreenState extends State<LoginScreen> {
   String? _errorMessage;
 
   void _login() {
-    if (_passwordController.text == widget.appPassword) {
+    // Check password only if in app Password
+    if (widget.appPassword != null &&
+        _passwordController.text == widget.appPassword) {
       Navigator.of(context).pushReplacement(
         PageRouteBuilder(
           pageBuilder: (_, __, ___) => AlpacaAccountView(
-            keyId: widget.keyId,
-            secret: widget.secret,
-            baseUrl: widget.baseUrl,
+            keyId: widget.keyId ?? "",
+            secret: widget.secret ?? "",
+            baseUrl: widget.baseUrl ?? "https://paper-api.alpaca.markets/v2",
           ),
           transitionsBuilder: (_, animation, __, child) {
             return FadeTransition(opacity: animation, child: child);
           },
-          transitionDuration: const Duration(
-            milliseconds: 400, // time for the transition
-          ),
+          transitionDuration: const Duration(milliseconds: 500),
         ),
       );
     } else {
@@ -50,15 +50,14 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF1F1F1),
+      backgroundColor: const Color(0xFFF1F1F1),
       appBar: AppBar(
         title: const Text("Dashboard"),
         centerTitle: true,
-        backgroundColor: Color(0xFFF1F1F1),
+        backgroundColor: const Color(0xFFF1F1F1),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Expanded(
             child: Center(
@@ -67,9 +66,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 width: 370,
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: Color(0xFFF7F7F7),
+                  color: const Color(0xFFF7F7F7),
                   borderRadius: BorderRadius.circular(8),
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       color: Colors.black12,
                       blurRadius: 8,
@@ -78,24 +77,23 @@ class _LoginScreenState extends State<LoginScreen> {
                   ],
                 ),
                 child: Column(
-                  mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Image.network(
                       "https://res.cloudinary.com/drzpjbr87/image/upload/v1758097853/logo-1_elfffc.png",
                       height: 120,
                     ),
-                    Text(
+                    const Text(
                       "Welcome back",
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
-                        color: const Color.fromARGB(223, 0, 0, 0),
+                        color: Color.fromARGB(223, 0, 0, 0),
                       ),
                     ),
-                    Text(
-                      "Enter your password to access and track your account.\n"
-                      "We never store your password. Your access is verified securely.",
+                    const Text(
+                      "Enter your password \n"
+                      "to access and track your account.",
                       textAlign: TextAlign.center,
                       style: TextStyle(fontSize: 15, color: Colors.black54),
                     ),
