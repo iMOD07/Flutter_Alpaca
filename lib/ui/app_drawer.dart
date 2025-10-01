@@ -72,10 +72,16 @@ class AppDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: const Icon(Icons.logout),
+            leading: const Icon(
+              Icons.logout,
+              color: Color.fromARGB(255, 240, 0, 0),
+            ),
             title: const Text(
               "Log out",
-              style: TextStyle(color: Color.fromARGB(255, 240, 0, 0)),
+              style: TextStyle(
+                color: Color.fromARGB(255, 240, 0, 0),
+                fontWeight: FontWeight.bold,
+              ),
             ),
             onTap: () async {
               final confirm = await showDialog<bool>(
